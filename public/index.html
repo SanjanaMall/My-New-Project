@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Guidance Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- jsPDF CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <!-- Theme Toggle (existing) -->
+  <div class="theme-toggle">
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
+  </div>
+
+  <div class="container">
+    <!-- Auth Section -->
+    <div id="authSection" class="auth-card">
+      <h1>🎓 College Guidance Hub</h1>
+      <div id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <p>Don't have account? <a href="#" onclick="showRegister()">Register</a></p>
+      </div>
+      <div id="registerForm" style="display: none;">
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Password" required>
+        <select id="regYear">
+          <option value="1st">1st Year</option>
+          <option value="2nd">2nd Year</option>
+          <option value="3rd">3rd Year</option>
+          <option value="4th">4th Year</option>
+        </select>
+        <input type="text" id="regLanguages" placeholder="Languages (comma separated)">
+        <button onclick="register()">Create Account</button>
+        <p><a href="#" onclick="showLogin()">Back to Login</a></p>
+      </div>
+    </div>
+
+    <!-- Guidance Form (hidden until logged in) -->
+    <div id="guidanceSection" style="display: none;" class="auth-card">
+      <h2>📈 Get Your Learning Path</h2>
+      <!-- Existing form with checkboxes for roadmap -->
+      <form id="guidanceForm">
+        <!-- Existing fields... -->
+        <button type="submit">Generate Roadmap</button>
+      </form>
+      <div id="roadmap"></div>
+      <button id="exportPDF" style="display: none;">📥 Download PDF</button>
+      <a href="/dashboard" class="dashboard-link">📊 My Learning Path Dashboard</a>
+    </div>
+
+    <!-- Existing nav + chatbot -->
+    <nav><!-- existing --></nav>
+    <div id="chatbot"><!-- existing with smart updates --></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "python-free",
+    "title": "Python for Beginners - freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "type": "free",
+    "tags": ["python", "beginner"],
+    "suitableYears": ["1st"],
+    "thumbnail": "https://img.youtube.com/vi/rfscVS0vtbw/0.jpg"
+  },
+  {
+    "id": "dsa-leetcode",
+    "title": "LeetCode DSA Practice",
+    "url": "https://leetcode.com",
+    "type": "free",
+    "tags": ["dsa", "intermediate"],
+    "suitableYears": ["2nd", "3rd"],
+    "thumbnail": "https://leetcode.com/static/images/logo.png"
+  },
+  {
+    "id": "webdev-udemy",
+    "title": "Web Development Bootcamp (Paid)",
+    "url": "https://www.udemy.com/course/the-web-developer-bootcamp/",
+    "type": "paid",
+    "tags": ["webdev", "beginner"],
+    "suitableYears": ["1st", "2nd"],
+    "thumbnail": "https://img.udemy.com"
+  },
+  {
+    "id": "ai-arxiv",
+    "title": "AI Research Papers - arXiv",
+    "url": "https://arxiv.org",
+    "type": "free",
+    "tags": ["research", "ai"],
+    "suitableYears": ["3rd", "4th"],
+    "thumbnail": "https://arxiv.org/static/banner.png"
+  }
+]
