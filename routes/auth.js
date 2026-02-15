@@ -6,6 +6,9 @@ const router = express.Router();
 // Resources Database
 const resources = require('../data/resources.json');
 
+// DEBUG: Log JWT_SECRET on startup
+console.log('✓ JWT_SECRET loaded:', process.env.JWT_SECRET ? 'YES (has value)' : 'NO (undefined)');
+
 // Middleware: Authenticate token
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
