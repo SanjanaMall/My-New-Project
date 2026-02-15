@@ -1,31 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Branches Info</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Important Branches in Education</h1>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle">
-      <button id="themeBtn" aria-label="Toggle dark mode">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
-      </button>
-    </div>
-    <ul>
-      <li><b>BTech:</b> Engineering fields like CS, EE, ME. Focus on tech skills.</li>
-      <li><b>BBA:</b> Business Administration. Covers management, finance.</li>
-      <li><b>BArch:</b> Architecture. Design and planning buildings.</li>
-      <li><b>BCA:</b> Computer Applications. Focus on software development.</li>
-      <li><b>BSc:</b> Science disciplines like Physics, Chemistry, Biology.</li>
-      <li><b>MBA:</b> Management. Covers business strategy, leadership.</li>
-      <li><b>Mtech:</b> Engineering fields like CS, EE, ME. Focus on advanced tech skills.</li>
-      <!-- Add more like BCA, BSc, etc. -->
-    </ul>
-    <a href="/">Back</a>
+  <div class="theme-toggle">
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
   </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <h2>Branches</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/channels">Resources</a>
+        <a href="/research">Research</a>
+        <a href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <div class="branches-card">
+      <h1>🎓 Important Branches in Education</h1>
+      
+      <div class="branch-item">
+        <h3>BTech (Bachelor of Technology)</h3>
+        <p>Engineering fields like Computer Science (CS), Electronics & Communication (ECE), Mechanical Engineering (ME), Civil Engineering, and more. Focus on technical skills, coding, and practical applications.</p>
+      </div>
+
+      <div class="branch-item">
+        <h3>BBA (Bachelor of Business Administration)</h3>
+        <p>Business Administration. Covers management, finance, marketing, operations, and organizational leadership. Great for aspiring entrepreneurs and business managers.</p>
+      </div>
+
+      <div class="branch-item">
+        <h3>BCA (Bachelor of Computer Applications)</h3>
+        <p>Computer Applications. Focus on software development, programming languages, database management, and application design. Similar to BTech but more application-focused.</p>
+      </div>
+
+      <div class="branch-item">
+        <h3>BSc (Bachelor of Science)</h3>
+        <p>Science disciplines like Physics, Chemistry, Biology, Mathematics, Environmental Science. Strong theoretical foundation for research and advanced studies.</p>
+      </div>
+
+      <div class="branch-item">
+        <h3>BArch (Bachelor of Architecture)</h3>
+        <p>Architecture. Design and planning of buildings and spaces. Combines creativity with technical skills and engineering principles.</p>
+      </div>
+
+      <div class="branch-item">
+        <h3>MBA (Master of Business Administration)</h3>
+        <p>Management. Covers business strategy, leadership, finance, marketing. Postgraduate degree for career advancement in management roles.</p>
+      </div>
+
+      <div class="branch-item">
+        <h3>M.Tech (Master of Technology)</h3>
+        <p>Advanced Engineering fields. Postgraduate specialization in areas like Data Science, AI/ML, Cloud Computing, and other emerging technologies.</p>
+      </div>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

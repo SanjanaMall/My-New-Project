@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>College Guidance Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Guidance Hub</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- jsPDF CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-  <!-- Theme Toggle (existing) -->
+  <!-- Theme Toggle -->
   <div class="theme-toggle">
     <button id="themeBtn" aria-label="Toggle dark mode">
       <span class="icon-sun">☀️</span>
@@ -20,44 +20,114 @@
     <!-- Auth Section -->
     <div id="authSection" class="auth-card">
       <h1>🎓 College Guidance Hub</h1>
+      
+      <!-- Login Form -->
       <div id="loginForm">
+        <h2>Login</h2>
         <input type="email" id="loginEmail" placeholder="Email" required>
         <input type="password" id="loginPassword" placeholder="Password" required>
         <button onclick="login()">Login</button>
-        <p>Don't have account? <a href="#" onclick="showRegister()">Register</a></p>
+        <p>Don't have an account? <a href="#" onclick="showRegister(); return false;">Register here</a></p>
       </div>
+
+      <!-- Register Form -->
       <div id="registerForm" style="display: none;">
+        <h2>Create Account</h2>
         <input type="email" id="regEmail" placeholder="Email" required>
-        <input type="password" id="regPassword" placeholder="Password" required>
-        <select id="regYear">
+        <input type="password" id="regPassword" placeholder="Password (min 6 chars)" required>
+        <select id="regYear" required>
+          <option value="">Select Year</option>
           <option value="1st">1st Year</option>
           <option value="2nd">2nd Year</option>
           <option value="3rd">3rd Year</option>
           <option value="4th">4th Year</option>
         </select>
-        <input type="text" id="regLanguages" placeholder="Languages (comma separated)">
-        <button onclick="register()">Create Account</button>
-        <p><a href="#" onclick="showLogin()">Back to Login</a></p>
+        <select id="regCoding" required>
+          <option value="">Coding Experience</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <input type="text" id="regLanguages" placeholder="Languages (comma separated, optional)">
+        <button onclick="register()">Register</button>
+        <p><a href="#" onclick="showLogin(); return false;">Back to Login</a></p>
       </div>
     </div>
 
-    <!-- Guidance Form (hidden until logged in) -->
-    <div id="guidanceSection" style="display: none;" class="auth-card">
-      <h2>📈 Get Your Learning Path</h2>
-      <!-- Existing form with checkboxes for roadmap -->
-      <form id="guidanceForm">
-        <!-- Existing fields... -->
-        <button type="submit">Generate Roadmap</button>
-      </form>
-      <div id="roadmap"></div>
-      <button id="exportPDF" style="display: none;">📥 Download PDF</button>
-      <a href="/dashboard" class="dashboard-link">📊 My Learning Path Dashboard</a>
-    </div>
+    <!-- Main Content (After Login) -->
+    <div id="guidanceSection" style="display: none;">
+      <!-- Navigation -->
+      <nav class="navbar">
+        <h2>College Guidance Hub</h2>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/branches">Branches</a>
+          <a href="/channels">Resources</a>
+          <a href="/research">Research</a>
+          <a href="/simulator">Career Simulator</a>
+          <a href="/dashboard">Dashboard</a>
+          <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+      </nav>
 
-    <!-- Existing nav + chatbot -->
-    <nav><!-- existing --></nav>
-    <div id="chatbot"><!-- existing with smart updates --></div>
+      <!-- Guidance Form -->
+      <div class="guidance-card">
+        <h2>📈 Get Your Learning Path</h2>
+        <form id="guidanceForm">
+          <label for="guidanceYear">Your Year:</label>
+          <select id="guidanceYear" name="year" required>
+            <option value="1st">1st Year</option>
+            <option value="2nd">2nd Year</option>
+            <option value="3rd">3rd Year</option>
+            <option value="4th">4th Year</option>
+          </select>
+
+          <label for="guidanceCoding">Coding Experience:</label>
+          <select id="guidanceCoding" name="codingExp" required>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+
+          <label>Interests:</label>
+          <div class="interests-group">
+            <label><input type="checkbox" name="interests" value="python"> Python</label>
+            <label><input type="checkbox" name="interests" value="dsa"> DSA</label>
+            <label><input type="checkbox" name="interests" value="webdev"> Web Dev</label>
+            <label><input type="checkbox" name="interests" value="ai"> AI/ML</label>
+          </div>
+
+          <button type="submit">Generate Roadmap</button>
+        </form>
+        
+        <div id="suggestions" style="margin-top: 20px;"></div>
+        <button id="exportPDF" onclick="exportToPDF()" style="margin-top: 10px; display: none;">📥 Download PDF</button>
+      </div>
+
+      <!-- Chatbot Section -->
+      <div class="chatbot-card">
+        <h3>💬 Ask Me Anything</h3>
+        <div id="chatOutput" style="border: 1px solid var(--border); padding: 10px; height: 250px; overflow-y: auto; margin-bottom: 10px; border-radius: 5px;"></div>
+        <div id="typingIndicator" style="display: none; align-items: center; gap: 5px;">
+          <span>Bot typing</span>
+          <span style="animation: bounce 1.4s infinite;">•</span>
+          <span style="animation: bounce 1.4s infinite 0.2s;">•</span>
+          <span style="animation: bounce 1.4s infinite 0.4s;">•</span>
+        </div>
+        <div style="display: flex; gap: 5px;">
+          <input type="text" id="chatInput" placeholder="Ask about courses, resources, or guidance..." style="flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 4px;">
+          <button onclick="sendMessage()" style="padding: 8px 15px;">Send</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <style>
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+  </style>
 
   <script src="script.js"></script>
 </body>

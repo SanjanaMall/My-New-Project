@@ -1,13 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>Guidance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guidance - College Hub</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Your Personalized Guidance</h1>
-  <div id="suggestions"></div>
-  <a href="/">Back</a>
+  <div class="theme-toggle">
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
+  </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <h2>Guidance</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/branches">Branches</a>
+        <a href="/dashboard">Dashboard</a>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </nav>
+
+    <div class="guidance-card">
+      <h1>📚 Your Personalized Guidance</h1>
+      <p>Based on your year and interests, here are the best resources for your learning journey:</p>
+      <div id="suggestions"></div>
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

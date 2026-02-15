@@ -1,27 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>Research Suggestions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Topics</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Trending Research Topics</h1>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle">
-      <button id="themeBtn" aria-label="Toggle dark mode">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
-      </button>
-    </div>
-    <ul>
-      <li>AI and Machine Learning: Visit arXiv.org.</li>
-      <li>Sustainable Energy: Check IEEE Xplore.</li>
-      <li>Quantum Computing: Google Scholar for papers.</li>
-      <!-- Add futuristic ones like Metaverse, Biotech -->
-    </ul>
-    <a href="/">Back</a>
+  <div class="theme-toggle">
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
   </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <h2>Research Topics</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/branches">Branches</a>
+        <a href="/channels">Resources</a>
+        <a href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <div class="research-card">
+      <h1>🔬 Trending Research Topics</h1>
+      <p>Explore cutting-edge research areas that are shaping the future:</p>
+
+      <div class="research-item">
+        <h3>🤖 Artificial Intelligence & Machine Learning</h3>
+        <p>Deep learning, neural networks, natural language processing, computer vision, and autonomous systems. Explore on <a href="https://arxiv.org" target="_blank">arXiv.org</a>.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>♻️ Sustainable Energy & Green Technology</h3>
+        <p>Renewable energy sources, solar technology, battery innovations, and climate solutions. Find papers on <a href="https://ieeexplore.ieee.org" target="_blank">IEEE Xplore</a>.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>⚛️ Quantum Computing</h3>
+        <p>Quantum algorithms, error correction, and quantum supremacy. Search on <a href="https://scholar.google.com" target="_blank">Google Scholar</a>.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>🧬 Biotechnology & Gene Editing</h3>
+        <p>CRISPR technology, synthetic biology, personalized medicine, and genetic engineering advances.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>🌐 Metaverse & Web3 Technologies</h3>
+        <p>Virtual reality, blockchain, decentralized systems, NFTs, and immersive internet experiences.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>🧠 Neuroscience & Brain-Computer Interfaces</h3>
+        <p>Understanding neural systems, memory, consciousness, and brain-machine interfaces for medical applications.</p>
+      </div>
+
+      <div class="research-item">
+        <h3>🔒 Cybersecurity & Cryptography</h3>
+        <p>Zero-trust security, post-quantum cryptography, threat detection, and privacy-preserving technologies.</p>
+      </div>
+
+      <h3>📚 Key Research Platforms:</h3>
+      <ul>
+        <li><a href="https://arxiv.org" target="_blank">arXiv.org</a> - Latest papers in computer science, physics, math</li>
+        <li><a href="https://scholar.google.com" target="_blank">Google Scholar</a> - Comprehensive academic search engine</li>
+        <li><a href="https://www.researchgate.net" target="_blank">ResearchGate</a> - Research community and paper sharing</li>
+        <li><a href="https://www.semanticscholar.org" target="_blank">Semantic Scholar</a> - AI-powered research discovery</li>
+        <li><a href="https://journals.plos.org" target="_blank">PLOS ONE</a> - Open-access peer-reviewed journals</li>
+      </ul>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

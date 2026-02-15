@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Simulator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="theme-toggle">
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
+  </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <h2>Career Simulator</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/branches">Branches</a>
+        <a href="/channels">Resources</a>
+        <a href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <div class="simulator-card">
+      <h1>🎮 Career Path Simulator</h1>
+      <p>Explore different career paths based on your choices and interests.</p>
+
+      <div class="simulator-section">
+        <h2>Let's Find Your Perfect Career Path!</h2>
+        
+        <div class="question-block">
+          <h3>1. Which branch interests you most?</h3>
+          <div class="options">
+            <button class="option-btn" onclick="selectBranch('BTech')">🔧 BTech (Engineering)</button>
+            <button class="option-btn" onclick="selectBranch('BBA')">💼 BBA (Business)</button>
+            <button class="option-btn" onclick="selectBranch('BCA')">💻 BCA (Computers)</button>
+            <button class="option-btn" onclick="selectBranch('BSc')">🔬 BSc (Science)</button>
+          </div>
+        </div>
+
+        <div class="question-block" id="specialization-block" style="display:none;">
+          <h3>2. What's your career goal?</h3>
+          <div class="options" id="specialization-options"></div>
+        </div>
+
+        <div class="question-block" id="timeline-block" style="display:none;">
+          <h3>3. What's your timeline?</h3>
+          <div class="options">
+            <button class="option-btn" onclick="selectTimeline('short')">⚡ 6 months - Short-term boost</button>
+            <button class="option-btn" onclick="selectTimeline('medium')">📅 1-2 years - Solid foundation</button>
+            <button class="option-btn" onclick="selectTimeline('long')">🎯 3-4 years - Master's ready</button>
+          </div>
+        </div>
+
+        <div id="result-block" style="display:none; margin-top: 30px;">
+          <h2>Your Personalized Career Path 🚀</h2>
+          <div id="result-content"></div>
+          <button onclick="resetSimulator()" class="reset-btn">Try Another Path</button>
+        </div>
+      </div>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Initialize theme loader
+    document.addEventListener('DOMContentLoaded', () => {
+      loadTheme();
+      const themeBtn = document.getElementById('themeBtn');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', toggleTheme);
+      }
+    });
+
+    let selectedBranch = null;
+    let selectedSpecialization = null;
+    let selectedTimeline = null;
+
+    const careerPaths = {
+      BTech: {
+        specializations: ['Software Development', 'Data Science & AI', 'DevOps/Cloud', 'Embedded Systems'],
+        careers: {
+          'Software Development': {
+            short: ['Learn Git & GitHub', 'Master a framework (React/Node.js)', 'Build 2-3 projects'],
+            medium: ['Full-stack development', 'System design basics', 'Contribute to open source'],
+            long: ['Advanced system design', 'Microservices architecture', 'Start your own product']
+          },
+          'Data Science & AI': {
+            short: ['Python, NumPy, Pandas', 'Basic ML models', 'Kaggle competitions'],
+            medium: ['Deep learning, TensorFlow', 'NLP basics', 'Real-world ML projects'],
+            long: ['Research papers', 'Advanced MLOps', 'AI product development']
+          },
+          'DevOps/Cloud': {
+            short: ['Docker & containers', 'Kubernetes basics', 'CI/CD pipelines'],
+            medium: ['Cloud platforms (AWS/GCP)', 'Infrastructure as Code', 'System administration'],
+            long: ['Cloud architecture', 'Multi-cloud strategies', 'Enterprise solutions']
+          },
+          'Embedded Systems': {
+            short: ['C programming', 'Microcontroller basics', 'Arduino projects'],
+            medium: ['Real-time systems', 'IoT basics', 'Hardware-software integration'],
+            long: ['Complex embedded systems', 'Firmware development', 'IoT architectures']
+          }
+        }
+      },
+      BBA: {
+        specializations: ['Finance', 'Marketing', 'Operations', 'Entrepreneurship'],
+        careers: {
+          'Finance': {
+            short: ['Financial analysis basics', 'Excel mastery', 'Investment fundamentals'],
+            medium: ['Portfolio management', 'Financial modeling', 'Risk analysis'],
+            long: ['Investment banking', 'Private equity', 'Corporate finance']
+          },
+          'Marketing': {
+            short: ['Digital marketing basics', 'Social media strategy', 'Content creation'],
+            medium: ['Brand management', 'Data analytics for marketing', 'Campaign management'],
+            long: ['Marketing strategy', 'Product management', 'Market leadership']
+          },
+          'Operations': {
+            short: ['Supply chain basics', 'Process improvement', 'Quality management'],
+            medium: ['Lean/Six Sigma', 'Vendor management', 'Logistics'],
+            long: ['Strategic operations', 'Global supply chains', 'Operational excellence']
+          },
+          'Entrepreneurship': {
+            short: ['Business plan writing', 'Startup fundamentals', 'Pitch preparation'],
+            medium: ['Fundraising basics', 'Product development', 'Market validation'],
+            long: ['Scale your startup', 'International expansion', 'Exit strategies']
+          }
+        }
+      },
+      BCA: {
+        specializations: ['Web Development', 'Mobile Apps', 'Database Design', 'Cybersecurity'],
+        careers: {
+          'Web Development': {
+            short: ['HTML, CSS, JavaScript', 'Responsive design', 'First website project'],
+            medium: ['React/Vue frameworks', 'Backend basics', 'Full-stack development'],
+            long: ['Web architecture', 'Performance optimization', 'Advanced frameworks']
+          },
+          'Mobile Apps': {
+            short: ['Android/iOS basics', 'Flutter or React Native', 'Simple app building'],
+            medium: ['Complex app architecture', 'User experience design', 'API integration'],
+            long: ['App scaling', 'Advanced features', 'Publishing strategies']
+          },
+          'Database Design': {
+            short: ['SQL basics', 'Relational databases', 'Query optimization'],
+            medium: ['NoSQL databases', 'Database design patterns', 'Big data basics'],
+            long: ['Data warehousing', 'Advanced analytics', 'Database architecture']
+          },
+          'Cybersecurity': {
+            short: ['Network security basics', 'Ethical hacking intro', 'Linux fundamentals'],
+            medium: ['Penetration testing', 'Security protocols', 'Threat analysis'],
+            long: ['Advanced pentesting', 'Security architecture', 'CISO preparation']
+          }
+        }
+      },
+      BSc: {
+        specializations: ['Physics', 'Chemistry', 'Biology', 'Data Science'],
+        careers: {
+          'Physics': {
+            short: ['Classical mechanics', 'Lab experiments', 'Competitive exams prep'],
+            medium: ['Quantum mechanics', 'Research projects', 'Advanced topics'],
+            long: ['Research papers', 'PhD readiness', 'Specialized research']
+          },
+          'Chemistry': {
+            short: ['Organic & inorganic chemistry', 'Lab techniques', 'Industry certifications'],
+            medium: ['Analytical chemistry', 'Pharmaceutical basics', 'Research internships'],
+            long: ['Research specialization', 'Pharmaceutical R&D', 'Research lead roles']
+          },
+          'Biology': {
+            short: ['Molecular biology basics', 'Lab skills', 'Biotech fundamentals'],
+            medium: ['Biotechnology projects', 'Genetic engineering', 'Research experience'],
+            long: ['Advanced biotech', 'Genomics', 'Bioinformatics']
+          },
+          'Data Science': {
+            short: ['Statistics basics', 'Python for data', 'Visualization'],
+            medium: ['Machine learning', 'Big data tools', 'Data analysis projects'],
+            long: ['Advanced ML', 'AI research', 'Data strategy']
+          }
+        }
+      }
+    };
+
+    function selectBranch(branch) {
+      selectedBranch = branch;
+      const specs = careerPaths[branch].specializations;
+      let optionsHTML = '';
+      specs.forEach(spec => {
+        optionsHTML += `<button class="option-btn" onclick="selectSpecialization('${spec}')">${spec}</button>`;
+      });
+      document.getElementById('specialization-options').innerHTML = optionsHTML;
+      document.getElementById('specialization-block').style.display = 'block';
+    }
+
+    function selectSpecialization(spec) {
+      selectedSpecialization = spec;
+      document.getElementById('timeline-block').style.display = 'block';
+    }
+
+    function selectTimeline(timeline) {
+      selectedTimeline = timeline;
+      generatePath();
+    }
+
+    function generatePath() {
+      const path = careerPaths[selectedBranch].careers[selectedSpecialization][selectedTimeline];
+      let resultHTML = `<h3>${selectedBranch} - ${selectedSpecialization} (${selectedTimeline === 'short' ? '6 months' : selectedTimeline === 'medium' ? '1-2 years' : '3-4 years'})</h3>`;
+      resultHTML += '<ol>';
+      path.forEach((step, index) => {
+        resultHTML += `<li><strong>${step}</strong></li>`;
+      });
+      resultHTML += '</ol>';
+      resultHTML += '<p style="margin-top: 20px; font-style: italic;">Remember: Consistent effort beats infinite talent. Start today! 💪</p>';
+
+      document.getElementById('result-content').innerHTML = resultHTML;
+      document.getElementById('result-block').style.display = 'block';
+      window.scrollTo(0, document.getElementById('result-block').offsetTop);
+    }
+
+    function resetSimulator() {
+      selectedBranch = null;
+      selectedSpecialization = null;
+      selectedTimeline = null;
+      document.getElementById('specialization-block').style.display = 'none';
+      document.getElementById('timeline-block').style.display = 'none';
+      document.getElementById('result-block').style.display = 'none';
+      window.scrollTo(0, document.querySelector('.question-block').offsetTop);
+    }
+  </script>
+</body>
+</html>

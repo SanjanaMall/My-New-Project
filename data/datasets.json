@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dsa-101",
+    "category": "Data Structures",
+    "topics": ["Arrays", "Linked Lists", "Stacks", "Queues"],
+    "difficulty": "Beginner",
+    "resources": ["GeeksforGeeks", "LeetCode", "HackerRank"]
+  },
+  {
+    "id": "python-101",
+    "category": "Programming",
+    "topics": ["Syntax", "Functions", "OOP", "Libraries"],
+    "difficulty": "Beginner",
+    "resources": ["Codecademy", "freeCodeCamp", "Real Python"]
+  },
+  {
+    "id": "webdev-basic",
+    "category": "Web Development",
+    "topics": ["HTML", "CSS", "JavaScript", "DOM"],
+    "difficulty": "Beginner",
+    "resources": ["MDN Web Docs", "freeCodeCamp", "W3Schools"]
+  },
+  {
+    "id": "ml-foundations",
+    "category": "Machine Learning",
+    "topics": ["Regression", "Classification", "Clustering", "Neural Networks"],
+    "difficulty": "Intermediate",
+    "resources": ["Coursera", "Andrew Ng Course", "Kaggle"]
+  },
+  {
+    "id": "react-advanced",
+    "category": "Frontend",
+    "topics": ["Hooks", "State Management", "Performance", "Testing"],
+    "difficulty": "Intermediate",
+    "resources": ["React Docs", "Pluralsight", "Egghead.io"]
+  },
+  {
+    "id": "competitive-dsa",
+    "category": "Competitive Programming",
+    "topics": ["Advanced DSA", "Algorithms", "Optimization", "Contest Strategy"],
+    "difficulty": "Advanced",
+    "resources": ["Codeforces", "CodeChef", "SPOJ"]
+  },
+  {
+    "id": "system-design",
+    "category": "Backend",
+    "topics": ["Scalability", "Databases", "Caching", "Microservices"],
+    "difficulty": "Advanced",
+    "resources": ["System Design Primer", "Design Gurus", "YouTube Channels"]
+  },
+  {
+    "id": "devops-basics",
+    "category": "DevOps",
+    "topics": ["Docker", "Kubernetes", "CI/CD", "Cloud Deployment"],
+    "difficulty": "Intermediate",
+    "resources": ["Linux Academy", "Udemy", "Docker Docs"]
+  }
+]

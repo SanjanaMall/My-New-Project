@@ -1,31 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>Coding Channels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Resources</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Coding Resources</h1>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle">
-      <button id="themeBtn" aria-label="Toggle dark mode">
-          <span class="icon-sun">☀️</span>
-          <span class="icon-moon">🌙</span>
-      </button>
-    </div>
-    <h2>Free Channels:</h2>
-    <ul>
-      <li>freeCodeCamp (YouTube)</li>
-      <li>GeeksforGeeks</li>
-    </ul>
-    <h2>Paid Channels:</h2>
-    <ul>
-      <li>Udemy courses on Python/DSA</li>
-      <li>Coursera specializations</li>
-    </ul>
-    <a href="/">Back</a>
+  <div class="theme-toggle">
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
   </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <h2>Learning Resources</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/branches">Branches</a>
+        <a href="/research">Research</a>
+        <a href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <div class="resources-card">
+      <h1>📚 Coding & Learning Channels</h1>
+      
+      <section>
+        <h2>🆓 Free Platforms</h2>
+        <ul>
+          <li><strong>freeCodeCamp (YouTube)</strong> - Complete coding tutorials for all levels</li>
+          <li><strong>GeeksforGeeks</strong> - DSA, competitive programming, interview prep</li>
+          <li><strong>LeetCode</strong> - Problem-solving platform for coding interviews</li>
+          <li><strong>HackerRank</strong> - Competitive programming and skill development</li>
+          <li><strong>Khan Academy</strong> - Math, science, and computer science fundamentals</li>
+          <li><strong>Codecademy</strong> - Interactive coding courses (free tier available)</li>
+          <li><strong>MIT OpenCourseWare</strong> - Free university-level courses</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>💰 Paid Platforms</h2>
+        <ul>
+          <li><strong>Udemy</strong> - Affordable courses on Python, DSA, Web Dev, and more</li>
+          <li><strong>Coursera</strong> - University-partnered specializations with certificates</li>
+          <li><strong>Pluralsight</strong> - Professional tech skill development</li>
+          <li><strong>DataCamp</strong> - Data science and analytics specialization</li>
+          <li><strong>LinkedIn Learning</strong> - Professional courses and certifications</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🎓 YouTube Channels</h2>
+        <ul>
+          <li><strong>Code with Harry</strong> - Hindi and English coding tutorials</li>
+          <li><strong>Apna College</strong> - Complete DSA and web development</li>
+          <li><strong>Striver</strong> - DSA and competitive programming</li>
+          <li><strong>Love Babbar</strong> - Complete development bootcamp</li>
+          <li><strong>Traversy Media</strong> - Web design and development</li>
+        </ul>
+      </section>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

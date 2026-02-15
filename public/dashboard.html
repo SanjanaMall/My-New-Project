@@ -1,23 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Learning Path - Dashboard</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="theme-toggle">
-    <button id="themeBtn">🌙</button>
+    <button id="themeBtn" aria-label="Toggle dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
   </div>
+
   <div class="container">
-    <h1>📊 My Learning Path Dashboard</h1>
-    <div id="profileInfo"></div>
-    <h2>🎯 My Progress</h2>
-    <div id="learningPath"></div>
-    <h2>⭐ My Ratings</h2>
-    <div id="ratings"></div>
-    <a href="/" class="back-btn">← Back to Home</a>
+    <nav class="navbar">
+      <h2>Dashboard</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/branches">Branches</a>
+        <a href="/channels">Resources</a>
+        <a href="/research">Research</a>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </nav>
+
+    <div class="dashboard-card">
+      <h1>📊 My Learning Path Dashboard</h1>
+      
+      <div id="profileInfo" style="margin-bottom: 30px;">
+        <h2>👤 Profile Information</h2>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <p><strong>Year:</strong> <span id="userYear"></span></p>
+        <p><strong>Coding Level:</strong> <span id="userLevel"></span></p>
+      </div>
+
+      <div id="learningPath" style="margin-bottom: 30px;">
+        <h2>🎯 My Progress</h2>
+        <div id="learningPathList"></div>
+      </div>
+
+      <div id="ratings" style="margin-bottom: 30px;">
+        <h2>⭐ My Ratings</h2>
+        <div id="ratingsList"></div>
+      </div>
+
+      <div style="margin-top: 30px;">
+        <button onclick="exportToPDF()" style="margin-right: 10px;">📥 Download PDF</button>
+        <a href="/" class="back-btn">← Back to Home</a>
+      </div>
+    </div>
   </div>
+
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadTheme();
+      const themeBtn = document.getElementById('themeBtn');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', toggleTheme);
+      }
+
+      const user = currentUser;
+      if (!user) {
+        window.location.href = '/';
+        return;
+      }
+
+      document.getElementById('userEmail').textContent = user.email;
+      document.getElementById('userYear').textContent = user.year;
+      document.getElementById('userLevel').textContent = user.codingExp;
+
+      if (user.learningPath && user.learningPath.length > 0) {
+        let pathHTML = '<ul>';
+        user.learningPath.forEach(item => {
+          pathHTML += `<li>${item.topic} - <strong>${item.status}</strong></li>`;
+        });
+        pathHTML += '</ul>';
+        document.getElementById('learningPathList').innerHTML = pathHTML;
+      } else {
+        document.getElementById('learningPathList').innerHTML = '<p>No learning path yet. Return home to generate one!</p>';
+      }
+
+      if (user.ratings && user.ratings.size > 0) {
+        let ratingsHTML = '<ul>';
+        user.ratings.forEach((rating, resourceId) => {
+          ratingsHTML += `<li>Resource ${resourceId}: ${rating}/5 ⭐</li>`;
+        });
+        ratingsHTML += '</ul>';
+        document.getElementById('ratingsList').innerHTML = ratingsHTML;
+      } else {
+        document.getElementById('ratingsList').innerHTML = '<p>No ratings yet.</p>';
+      }
+    });
+  </script>
 </body>
 </html>
