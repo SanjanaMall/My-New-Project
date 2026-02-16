@@ -84,7 +84,6 @@
 
 **Option A: Development Mode (with auto-reload)**
 ```bash
-npm run dev
 ```
 
 **Option B: Production Mode**
